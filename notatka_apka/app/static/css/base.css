@@ -1,0 +1,48 @@
+.navbar {
+    background-color: gray;
+    color: green;
+}
+
+.navbar-nav {
+    background-color: gray;
+    color: green;
+}
+
+.form-group {
+    margin: 15px 10px;
+}
+
+.nav-link {
+    background-color: black !important;
+}
+
+.navbar-toggler {
+    background-color: black !important;
+}
+
+.nav-link.disabled {
+    color: rgb(91, 91, 91) !important;
+}
+
+#login-button {
+    border-width: 2px;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: rgb(90, 176, 250);
+}
+
+.messages ul.flashes {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.input{
+    margin: 10px 5px;
+}
+
+#submitButton {
+    margin-top: 25px;
+    height: 45px;
+}

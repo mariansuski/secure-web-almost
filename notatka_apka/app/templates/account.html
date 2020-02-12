@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block css_links %}
+{% endblock %}
+
+{% block main %}
+<section>
+  <div>
+    <h3 class="text-center">Konto</h3>
+
+    <p>Login: {{current_user.login}}</p>
+
+    <p><b>Email:</b> {{current_user.email}}</p>
+    <section>
+      <h4>Login</h4>
+      <table>
+
+        <tbody>
+          {% for login in login_attempts %}
+          <tr>
+            <tr>{{ login.time }}  </tr>
+            <tr>{{ login.ip }}</tr>
+            <tr>
+              {% if login.successful %}
+              <span">Zalogowano pomyślnie</span>
+              {% else %}
+              <span">Nieudana próba logowania</span>
+              {% endif %}
+            </tr>
+            <hr>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  
+    <a class="btn" href={{url_for('change_password')}}>Zmień haslo</a>
+    
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block css_links %}
+<style>
+  textarea:disabled {
+    color: rgba(128, 128, 128, 0.53);
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+<div>
+  <h3 class="text-center">Twoje notatki</h3>
+
+  <section>
+    <h4>Dodaj notatkę</h4>
+
+    <form class="d-flex mt-4 justify-content-center" method="POST" action={{url_for('my_notes')}}>
+      {{form.csrf_token}}
+
+      <article" style="width: 90%">
+        <div class="card-body">
+          <input class="mb-2 form-control" type="text" name="title" placeholder="Tytuł notatki" maxlength="20" required>
+
+          <textarea class="w-100 form-control" name="body" placeholder="Tekst notatki"></textarea>
+          <div class="d-flex flex-row-reverse">
+            <i class="fab fa-markdown" style="position: relative; top: -20px; right: 10px; color: white;"
+              data-toggle="tooltip" data-placement="bottom" title="Wsparcie dla markdown"></i>
+          </div>
+        </div>
+      </article>
+
+      <section>
+
+        <div>
+          <label for="share">
+            <span>Lista udostępnień - login na linijkę</span>
+          </label>
+          <textarea class="form-control" name="shares" id="share-list"></textarea>
+        </div>
+
+        <div class="form-group">
+          <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" name="public" id="public-toggle">
+            <label class="custom-control-label" for="public-toggle">
+              Notatka dla wszystkich
+            </label>
+          </div>
+        </div>
+
+        <button class="btn" type="submit">
+          Dodaj notatkę
+        </button>
+
+      </section>
+    </form>
+  </section>
+
+  <hr>
+
+  <section>
+    <h4>Twoje notatki</h4>
+
+    <div>
+
+      {% for note in notes %}
+      <article style="width: 90%">
+        <div class="card-body">
+          <h4 class="card-title">{{note.title}}</h4>
+          <p class="card-text">
+            {{note.body | markdown}}
+          </p>
+
+          <a href={{url_for('delete_note', id=note.id)}}> Usuń notatkę </a>
+          {% if not note.public %}
+          <p><span>Udostępniona dla: </span>
+            {% for share in note.share_list %}
+            {{share.user_name}},
+            {% endfor %}
+          </p>
+          {% endif %}
+          {% if note.public %}
+            <div id="global-badge" > Publiczna notatka            </div>
+            {% endif %}
+
+        </div>
+      </article>
+      {% endfor %}
+
+    </div>
+
+  </section>
+
+</div>
+{% endblock %}

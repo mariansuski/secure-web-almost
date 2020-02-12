@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block css_links %}
+<style>
+  textarea:disabled {
+    color: rgba(91, 91, 91, 0.53);
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+<div class="container mt-3">
+  <h3 class="text-center">Notatki</h3>
+
+  <section>
+    <div>
+
+      {% for note in notes %}
+      <article style="width: 90%">
+
+        <div class="card-body">
+          <h4 class="card-title">{{note.title}}</h4>
+          <p class="card-text">
+            {{note.body | markdown}}
+          </p>
+          <p>Notatka od:</b> {{note.owner.login}}</p>
+          {% if note.public %}
+          <div> Notatka dla wszystkich </div>
+          {% endif %}
+
+        </div>
+
+      </article>
+
+      <hr>
+
+      {% endfor %}
+
+    </div>
+
+  </section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block main %}
+<section>
+  <div>
+    <h3 class="card-title text-center">Zaloguj się</h3>
+
+    <form method="POST" action={{url_for('login')}} id="form">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        <label for="login">Login</label>
+        <input { type="text" value="{{form.login.data if form.login.data}}"
+        class="{{'is-invalid' if form.login.errors}}"
+         name="login" placeholder="Wpisz login">
+        {% for error in form.login.errors %}
+        <p class="invalid-feedback">{{ error }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="form-group">
+        <label for="password">Hasło</label>
+        <input type="password" value="{{form.password.data if form.password.data}}" class="{{'is-invalid' if form.login.errors}}"
+          type="password"
+          name="password" placeholder="Wpisz hasło">
+        {% for error in form.password.errors %}
+        <p class="invalid-feedback">{{ error }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <button type="submit" class="btn" id="submit-button">Zaloguj</button>
+      </div>
+    </form>
+
+  </div>
+</section>
+{% endblock %}

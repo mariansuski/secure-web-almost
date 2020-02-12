@@ -1,0 +1,28 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    margin: auto;
+    background-color: lightgreen;
+}
+.intro {
+    max-width: 800px;
+}
+
+h1{
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .intro h1 {
+        font-size: 30px;
+    }
+}
+
+.center{
+    max-width: 500px;
+    margin: auto;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 400;
+}
